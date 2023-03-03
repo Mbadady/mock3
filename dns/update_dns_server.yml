@@ -1,0 +1,8 @@
+# update_dns_server.yml
+---
+- hosts: all
+  become: yes
+  tasks:
+     - template:
+         src: ~/playbooks/dns/templates/resolv.conf.j2
+         dest: /tmp/resolv.conf

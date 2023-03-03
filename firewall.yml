@@ -1,0 +1,21 @@
+---
+- name: Install firewalld and whitelist an ip address
+  hosts: node00
+  become: yes
+  tasks:
+     - name: Install firewalld
+       yum:
+         name: firewalld
+         state: present
+     - name: Start firewalld service
+       service:
+          name: firewalld
+          state: started
+
+     - name: Whitelist an Ip address
+       firewalld:
+         source: 172.20.1.101
+         zone: internal
+         state: enabled
+         permanent: yes
+         immediate: yes
